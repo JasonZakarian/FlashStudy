@@ -1,0 +1,11 @@
+C:\Projects\FlashStudy\FlashStudy.Services\bin\Debug\FlashStudy.Services.dll
+C:\Projects\FlashStudy\FlashStudy.Services\bin\Debug\FlashStudy.Services.pdb
+C:\Projects\FlashStudy\FlashStudy.Services\obj\Debug\FlashStudy.Services.csproj.CoreCompileInputs.cache
+C:\Projects\FlashStudy\FlashStudy.Services\obj\Debug\FlashStudy.Services.dll
+C:\Projects\FlashStudy\FlashStudy.Services\obj\Debug\FlashStudy.Services.pdb
+C:\Projects\FlashStudy\FlashStudy.Services\bin\Debug\FlashStudy.Models.dll
+C:\Projects\FlashStudy\FlashStudy.Services\bin\Debug\FlashStudy.Models.pdb
+C:\Projects\FlashStudy\FlashStudy.Services\obj\Debug\FlashStudy.Services.csprojAssemblyReference.cache
+C:\Projects\FlashStudy\FlashStudy.Services\obj\Debug\FlashStudy.Services.csproj.CopyComplete
+C:\Projects\FlashStudy\FlashStudy.Services\bin\Debug\BCrypt.Net-Next.dll
+C:\Projects\FlashStudy\FlashStudy.Services\bin\Debug\BCrypt.Net-Next.xml

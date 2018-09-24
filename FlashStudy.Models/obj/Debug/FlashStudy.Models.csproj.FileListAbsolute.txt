@@ -1,0 +1,5 @@
+C:\Projects\FlashStudy\FlashStudy.Models\bin\Debug\FlashStudy.Models.dll
+C:\Projects\FlashStudy\FlashStudy.Models\bin\Debug\FlashStudy.Models.pdb
+C:\Projects\FlashStudy\FlashStudy.Models\obj\Debug\FlashStudy.Models.csproj.CoreCompileInputs.cache
+C:\Projects\FlashStudy\FlashStudy.Models\obj\Debug\FlashStudy.Models.dll
+C:\Projects\FlashStudy\FlashStudy.Models\obj\Debug\FlashStudy.Models.pdb
