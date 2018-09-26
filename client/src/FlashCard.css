@@ -11,9 +11,25 @@
 .front{
     text-align:center;
     font-size:26px;
-    margin-top:5em;
+    margin-top:3em;
     padding-left:1em;
     padding-right:1em;
+}
+
+.back{
+    text-align:center;
+    font-size:26px;
+    margin-top:3em;
+    height:13em;
+    width:29em;
+    padding-left:1em;
+    padding-right:1em;
+    transform:rotateY(180deg)
+}
+
+.submitButton{
+   background-color:#C44536;
+   color:#EDDDD4;
 }
 
 .input{
@@ -21,4 +37,38 @@
     font-size:26px;
     text-align:center;
     margin-top:1em;
+    margin-bottom:1em;
+    background-color:#EDDDD4;
 }
+
+.flip-container{
+    perspective: 1000px;
+}
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg);
+}
+
+/* .flip-container, .front, .back {
+	width: 30em;
+	height: 50em;
+} */
+
+.flipper{
+    transition:0.6s;
+    transform-style:preserve-3d;
+    position:relative;
+}
+
+.front,.back{
+    backface-visibility: hidden;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.front{
+    z-index:2;
+    transform:rotateY(0deg);
+}
+
