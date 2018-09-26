@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import login from "./Login";
+import Login from "./Login";
 import { Switch, Route } from "react-router-dom";
+import FlashCard from "./FlashCard";
 
 class App extends Component {
   render() {
@@ -10,7 +11,8 @@ class App extends Component {
         <header className="App-header" />
         <div>
           <Switch>
-            <Route exact path="/login" component={login} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/deckcreator" component={FlashCard} />
           </Switch>
         </div>
       </div>

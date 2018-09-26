@@ -77,9 +77,8 @@ class Login extends React.Component {
         </div>
         <br />
         <button
-          className="form-control"
+          className="form-control btn btn-primary"
           type="button"
-          className="btn btn-primary"
           onClick={this.userCreateRequest}
         >
           Send

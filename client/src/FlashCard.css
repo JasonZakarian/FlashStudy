@@ -1,0 +1,24 @@
+.flashCard{
+    background-color:#197278;
+    height:30em;
+    width:50em;
+    border:3px solid #283D3B;
+    border-radius:25px;
+    color:#EDDDD4;
+    margin:5em;
+}
+
+.front{
+    text-align:center;
+    font-size:26px;
+    margin-top:5em;
+    padding-left:1em;
+    padding-right:1em;
+}
+
+.input{
+    width:15em;
+    font-size:26px;
+    text-align:center;
+    margin-top:1em;
+}
