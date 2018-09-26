@@ -1,12 +1,18 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import login from "./Login";
+import { Switch, Route } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <header className="App-header" />
+        <div>
+          <Switch>
+            <Route exact path="/login" component={login} />
+          </Switch>
+        </div>
       </div>
     );
   }

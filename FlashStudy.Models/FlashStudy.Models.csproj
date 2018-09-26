@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Card.cs" />
+    <Compile Include="Domain\Deck.cs" />
     <Compile Include="Domain\FlashCard.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\CardCreateRequest.cs" />
+    <Compile Include="Request\DeckCreateRequest.cs" />
     <Compile Include="Request\UserLoginRequest.cs" />
     <Compile Include="Response\BaseResponse.cs" />
     <Compile Include="Request\FlashCardCreateRequest.cs" />
