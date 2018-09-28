@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using FlashStudy.Models.Domain;
 
 namespace FlashStudy.Services
 {
@@ -30,6 +31,36 @@ namespace FlashStudy.Services
                 int newCardId = (int)cmd.Parameters["Id"].Value;
                 return newCardId;
             }
+        }
+
+        public Card GetByPosition(int deck, int position)
+        {
+            Card card = new Card();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Card_GetByPosition";
+
+                cmd.Parameters.AddWithValue("@DeckId", deck);
+                cmd.Parameters.AddWithValue("@Position", position);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    card.Id = (int)reader["Id"];
+                    card.DeckId = (int)reader["DeckId"];
+                    card.Question = (string)reader["Question"];
+                    card.Answer = (string)reader["Answer"];
+                    card.Position = (int)reader["Position"];
+                }
+            }
+
+            return card;
         }
     }
 }

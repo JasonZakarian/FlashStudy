@@ -1,4 +1,5 @@
-﻿using FlashStudy.Models.Request;
+﻿using FlashStudy.Models.Domain;
+using FlashStudy.Models.Request;
 using FlashStudy.Models.Response;
 using FlashStudy.Services;
 using System;
@@ -26,6 +27,15 @@ namespace FlashStudy.Web.Controllers.API
             int newCardId = cardService.Create(request);
 
             return Request.CreateResponse(HttpStatusCode.Created, new ItemResponse<int> { Item = newCardId });
+        }
+
+        [Route("{deck:int}/{position:int}"),HttpGet]
+        public HttpResponseMessage GetByPosition(int deck, int position)
+        {
+            Card card = new Card();
+            card = cardService.GetByPosition(deck,position);
+
+            return Request.CreateResponse(HttpStatusCode.OK, new ItemResponse<Card> { Item = card });
         }
     }
 }

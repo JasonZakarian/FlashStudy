@@ -3,7 +3,7 @@ import FlashCard from "./components/FlashCard";
 import { connect } from "react-redux";
 import { Label, Input, Container, Col, Row } from "reactstrap";
 import { CreateDeck } from "./services/deck.service";
-import { CreateCard } from "./services/card.service";
+import { CreateCard, GetCardByPosition } from "./services/card.service";
 import "./stylesheets/App.css";
 import "./stylesheets/FlashCard.css";
 
@@ -13,7 +13,8 @@ class DeckCreator extends React.Component {
     question: "",
     deckName: "",
     readyForCards: false,
-    currentPosition: 0
+    currentPosition: 0,
+    editMode: false
   };
 
   onChange = e => {
@@ -44,6 +45,20 @@ class DeckCreator extends React.Component {
         answer: "",
         question: "",
         currentPosition: this.state.currentPosition + 1
+      });
+    });
+  };
+
+  getLastCard = () => {
+    GetCardByPosition(
+      this.props.currentDeck,
+      this.state.currentPosition - 1
+    ).then(response => {
+      this.setState({
+        answer: response.data.item.answer,
+        question: response.data.item.question,
+        editMode: true,
+        currentPosition: this.state.currentPosition - 1
       });
     });
   };
@@ -93,6 +108,7 @@ class DeckCreator extends React.Component {
         <Row>
           <div
             className="arrow-left"
+            onClick={this.getLastCard}
             style={{
               marginLeft: "26em",
               visibility: this.state.currentPosition > 1 ? "visible" : "hidden"
