@@ -9,3 +9,7 @@ export function CreateCard(payload) {
 export function GetCardByPosition(deck, position) {
   return axios.get(`${baseUrl}/${deck}/${position}`);
 }
+
+export function EditCard(payload) {
+  return axios.put(`${baseUrl}`, payload);
+}

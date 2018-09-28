@@ -33,6 +33,26 @@ namespace FlashStudy.Services
             }
         }
 
+        public void EditCard(CardEditRequest request)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Card_Edit";
+
+                cmd.Parameters.AddWithValue("@Id", request.Id);
+                cmd.Parameters.AddWithValue("@Question", request.Question);
+                cmd.Parameters.AddWithValue("@Answer", request.Answer);
+                cmd.Parameters.AddWithValue("@DeckId", request.DeckId);
+                cmd.Parameters.AddWithValue("@Position", request.Position);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public Card GetByPosition(int deck, int position)
         {
             Card card = new Card();

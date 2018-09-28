@@ -47,12 +47,11 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\CardCreateRequest.cs" />
+    <Compile Include="Request\CardEditRequest.cs" />
     <Compile Include="Request\CardGetRequest.cs" />
     <Compile Include="Request\DeckCreateRequest.cs" />
     <Compile Include="Request\UserLoginRequest.cs" />
     <Compile Include="Response\BaseResponse.cs" />
-    <Compile Include="Request\FlashCardCreateRequest.cs" />
-    <Compile Include="Request\FlashCardEditRequest.cs" />
     <Compile Include="Request\UserCreateRequest.cs" />
     <Compile Include="Request\UserEditRequest.cs" />
     <Compile Include="Response\ItemResponse.cs" />

@@ -37,5 +37,13 @@ namespace FlashStudy.Web.Controllers.API
 
             return Request.CreateResponse(HttpStatusCode.OK, new ItemResponse<Card> { Item = card });
         }
+
+        [Route,HttpPut]
+        public HttpResponseMessage EditCard(CardEditRequest request)
+        {
+            cardService.EditCard(request);
+
+            return Request.CreateResponse(HttpStatusCode.OK, new SuccessResponse());
+        }
     }
 }

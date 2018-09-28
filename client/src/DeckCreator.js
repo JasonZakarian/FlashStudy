@@ -3,7 +3,11 @@ import FlashCard from "./components/FlashCard";
 import { connect } from "react-redux";
 import { Label, Input, Container, Col, Row } from "reactstrap";
 import { CreateDeck } from "./services/deck.service";
-import { CreateCard, GetCardByPosition } from "./services/card.service";
+import {
+  CreateCard,
+  GetCardByPosition,
+  EditCard
+} from "./services/card.service";
 import "./stylesheets/App.css";
 import "./stylesheets/FlashCard.css";
 
@@ -14,7 +18,8 @@ class DeckCreator extends React.Component {
     deckName: "",
     readyForCards: false,
     currentPosition: 0,
-    editMode: false
+    maximumPosition: 0,
+    currentCardId: ""
   };
 
   onChange = e => {
@@ -30,23 +35,59 @@ class DeckCreator extends React.Component {
       this.props.setCurrentDeck(response.data.item);
     });
     this.setState({ readyForCards: true });
-    this.setState({ currentPosition: 1 });
+    this.setState({ currentPosition: 1, maximumPosition: 1 });
   };
 
   sendCreateCardRequest = () => {
-    let payload = {
-      deckId: this.props.currentDeck,
-      question: this.state.question,
-      answer: this.state.answer,
-      position: this.state.currentPosition
-    };
-    CreateCard(payload).then(() => {
-      this.setState({
-        answer: "",
-        question: "",
-        currentPosition: this.state.currentPosition + 1
+    if (this.state.currentPosition < this.state.maximumPosition) {
+      let payload = {
+        id: this.state.currentCardId,
+        deckId: this.props.currentDeck,
+        question: this.state.question,
+        answer: this.state.answer,
+        position: this.state.currentPosition
+      };
+      EditCard(payload).then(() => {
+        if (this.state.currentPosition + 1 === this.state.maximumPosition) {
+          this.setState({
+            answer: "",
+            question: "",
+            currentCardId: "",
+            currentPosition: this.state.currentPosition + 1
+          });
+        } else if (
+          this.state.currentPosition + 1 <
+          this.state.maximumPosition
+        ) {
+          GetCardByPosition(
+            this.props.currentDeck,
+            this.state.currentPosition + 1
+          ).then(response => {
+            this.setState({
+              answer: response.data.item.answer,
+              question: response.data.item.question,
+              currentPosition: this.state.currentPosition + 1,
+              currentCardId: response.data.item.id
+            });
+          });
+        }
       });
-    });
+    } else if (this.state.currentPosition === this.state.maximumPosition) {
+      let payload = {
+        deckId: this.props.currentDeck,
+        question: this.state.question,
+        answer: this.state.answer,
+        position: this.state.currentPosition
+      };
+      CreateCard(payload).then(() => {
+        this.setState({
+          answer: "",
+          question: "",
+          currentPosition: this.state.currentPosition + 1,
+          maximumPosition: this.state.maximumPosition + 1
+        });
+      });
+    }
   };
 
   getLastCard = () => {
@@ -57,8 +98,8 @@ class DeckCreator extends React.Component {
       this.setState({
         answer: response.data.item.answer,
         question: response.data.item.question,
-        editMode: true,
-        currentPosition: this.state.currentPosition - 1
+        currentPosition: this.state.currentPosition - 1,
+        currentCardId: response.data.item.id
       });
     });
   };
