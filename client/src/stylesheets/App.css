@@ -14,12 +14,29 @@
   color: white;
 }
 
+.Creator-header{
+  background-color:#283D3B;
+  height: 110px;
+  padding: 20px;
+}
+
 .App-title {
   font-size: 1.5em;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.arrow-right{
+  width: 0; 
+  height: 0; 
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid #772E25;
+  border-radius:15px;
+  margin-top:10em;
+  transition:transform .2;
 }
 
 @keyframes App-logo-spin {

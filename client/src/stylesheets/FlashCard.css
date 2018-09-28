@@ -5,14 +5,16 @@
     border:3px solid #283D3B;
     border-radius:25px;
     color:#EDDDD4;
-    margin:5em;
+    margin-left:5em;
 }
 
 .front{
     text-align:center;
     font-size:26px;
     margin-top:3em;
-    padding-left:1em;
+    height:13em;
+    width:29em;
+    padding-left:2em;
     padding-right:1em;
 }
 
@@ -33,7 +35,7 @@
 }
 
 .input{
-    width:15em;
+    width:8em;
     font-size:26px;
     text-align:center;
     margin-top:1em;

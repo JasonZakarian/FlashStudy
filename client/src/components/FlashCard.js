@@ -1,13 +1,14 @@
 import React from "react";
-import "./FlashCard.css";
-import { Input, Row, Container } from "reactstrap";
+import "../stylesheets/FlashCard.css";
+import { Input, Row, Col } from "reactstrap";
 
 class FlashCard extends React.Component {
   state = {
     input: "",
     flipClass: "flip-container",
     flip: "",
-    answer: ""
+    answer: this.props.answer,
+    question: this.props.question
   };
 
   onChange = e => {
@@ -22,20 +23,22 @@ class FlashCard extends React.Component {
     }
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // do things with nextProps.someProp and prevState.cachedSomeProp
+    return {
+      question: nextProps.question,
+      answer: nextProps.answer
+    };
+  }
+
   render() {
     return (
-      <Container>
+      <Col md="6">
         <div className={`${this.state.flipClass} ${this.state.flip}`}>
           <div className="flipper flashCard">
             <div className="front">
               <p>Question:</p>
-              <p>
-                ___ is a shorthand for JavaScript XML. This is a type of file
-                used by React which utilizes the expressiveness of JavaScript
-                along with HTML like template syntax. This makes the HTML file
-                really easy to understand. This file makes applications robust
-                and boosts its performance.
-              </p>
+              <p>{this.state.question}</p>
               <Row>
                 <Input
                   type="text"
@@ -50,19 +53,19 @@ class FlashCard extends React.Component {
                 className="submitButton btn"
                 onClick={this.flip}
               >
-                Submit
+                {this.props.frontButtonLabel}
               </button>
             </div>{" "}
             {/*Front End*/}
             <div className="back">
               <h2>
-                {this.state.input === this.props.answer
+                {this.state.input === this.state.answer
                   ? "That's right!"
                   : "Incorrect"}
               </h2>
               <br />
-              <p>Correct Answer: {this.props.answer}</p>
-              <p>Your answer: {this.state.input}</p>
+              <p>Correct Answer: {this.state.answer}</p>
+              <p>Your answer: </p>
               <button
                 type="button"
                 className="submitButton btn"
@@ -74,7 +77,7 @@ class FlashCard extends React.Component {
             {/*Back End*/}
           </div>
         </div>
-      </Container>
+      </Col>
     );
   }
 }
