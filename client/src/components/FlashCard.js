@@ -65,7 +65,10 @@ class FlashCard extends React.Component {
               </h2>
               <br />
               <p>Correct Answer: {this.state.answer}</p>
-              <p>Your answer: </p>
+              <p>
+                Your answer:
+                {this.state.input}{" "}
+              </p>
               <button
                 type="button"
                 className="submitButton btn"

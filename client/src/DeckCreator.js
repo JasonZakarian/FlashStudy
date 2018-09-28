@@ -86,12 +86,19 @@ class DeckCreator extends React.Component {
     return (
       <div>
         <header className="Creator-header" />
-        <h1 style={{ textAlign: "center", marginRight: "3em" }}>
+        <h1 style={{ textAlign: "center", marginRight: "4em" }}>
           {this.state.deckName}, Question: {this.state.currentPosition}
         </h1>
 
         <Row>
-          <div style={{ marginLeft: "25em" }}>
+          <div
+            className="arrow-left"
+            style={{
+              marginLeft: "26em",
+              visibility: this.state.currentPosition > 1 ? "visible" : "hidden"
+            }}
+          />
+          <div>
             <FlashCard
               answer={this.state.answer}
               frontButtonLabel="Check Answer"
@@ -99,7 +106,16 @@ class DeckCreator extends React.Component {
               createMode={true}
             />
           </div>
-          <div className="arrow-right" onClick={this.sendCreateCardRequest} />
+          <div
+            className="arrow-right"
+            onClick={this.sendCreateCardRequest}
+            style={{
+              visibility:
+                this.state.answer != "" && this.state.question != ""
+                  ? "visible"
+                  : "hidden"
+            }}
+          />
         </Row>
 
         <br />
