@@ -34,6 +34,11 @@
    color:#EDDDD4;
 }
 
+.deleteButton{
+    background-color:#772E25;
+    color:#EDDDD4;
+}
+
 .input{
     width:8em;
     font-size:26px;

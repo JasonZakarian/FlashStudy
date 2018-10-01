@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using FlashStudy.Models.Domain;
+using System.Collections.Generic;
 
 namespace FlashStudy.Services
 {
@@ -50,6 +51,78 @@ namespace FlashStudy.Services
                 cmd.Parameters.AddWithValue("@Position", request.Position);
 
                 cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteCard(int deck, int position)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Card_Delete";
+
+                cmd.Parameters.AddWithValue("@DeckId", deck);
+                cmd.Parameters.AddWithValue("@Position", position);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public List<Card> GetByDeck(int deckId)
+        {
+            List<Card> deck = new List<Card>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Card_SelectByDeck";
+
+                cmd.Parameters.AddWithValue("@DeckId", deckId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Card card = new Card();
+                    card.Id = (int)reader["Id"];
+                    card.DeckId = (int)reader["DeckId"];
+                    card.Question = (string)reader["Question"];
+                    card.Answer = (string)reader["Answer"];
+                    card.Position = (int)reader["Position"];
+                    card.DeckName = (string)reader["Name"];
+                    deck.Add(card);
+                }
+
+                return deck;
+            }
+        }
+
+        public void FullDeckUpdate(List<Card> deck)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                foreach (Card item in deck)
+                {
+                    SqlCommand cmd = con.CreateCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "Card_Edit";
+
+                    cmd.Parameters.AddWithValue("@Id", item.Id);
+                    cmd.Parameters.AddWithValue("@DeckId", item.DeckId);
+                    cmd.Parameters.AddWithValue("@Question", item.Question);
+                    cmd.Parameters.AddWithValue("@Answer", item.Answer);
+                    cmd.Parameters.AddWithValue("@Position", deck.IndexOf(item)+1);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 

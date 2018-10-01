@@ -29,6 +29,15 @@ namespace FlashStudy.Web.Controllers.API
             return Request.CreateResponse(HttpStatusCode.Created, new ItemResponse<int> { Item = newCardId });
         }
 
+        [Route("{deckId:int}"),HttpGet]
+        public HttpResponseMessage GetByDeck(int deckId)
+        {
+            List<Card> deck = new List<Card>();
+            deck = cardService.GetByDeck(deckId);
+
+            return Request.CreateResponse(HttpStatusCode.OK, new ItemResponse<List<Card>>() { Item = deck });
+        }
+
         [Route("{deck:int}/{position:int}"),HttpGet]
         public HttpResponseMessage GetByPosition(int deck, int position)
         {
@@ -44,6 +53,22 @@ namespace FlashStudy.Web.Controllers.API
             cardService.EditCard(request);
 
             return Request.CreateResponse(HttpStatusCode.OK, new SuccessResponse());
+        }
+
+        [Route("{deck:int}/{position:int}"), HttpDelete]
+        public HttpResponseMessage DeleteCard(int deck, int position)
+        {
+            cardService.DeleteCard(deck,position);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Route("fullUpdate"),HttpPut]
+        public HttpResponseMessage FullDeckUpdate(List<Card> deck)
+        {
+            cardService.FullDeckUpdate(deck);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

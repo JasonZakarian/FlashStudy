@@ -1,7 +1,14 @@
 import React from "react";
 import FlashCard from "./components/FlashCard";
 import { connect } from "react-redux";
-import { Label, Input, Container, Col, Row } from "reactstrap";
+import {
+  Label,
+  Input,
+  Container,
+  Col,
+  Row,
+  UncontrolledTooltip
+} from "reactstrap";
 import { CreateDeck } from "./services/deck.service";
 import {
   CreateCard,
@@ -22,6 +29,17 @@ class DeckCreator extends React.Component {
     currentCardId: ""
   };
 
+  componentDidMount() {
+    if (this.props.currentPosition && this.props.currentDeck) {
+      this.setState({
+        currentPosition: this.props.currentPosition,
+        maximumPosition: this.props.currentPosition,
+        deckName: this.props.currentDeckName,
+        readyForCards: true
+      });
+    }
+  }
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -33,9 +51,10 @@ class DeckCreator extends React.Component {
     };
     CreateDeck(payload).then(response => {
       this.props.setCurrentDeck(response.data.item);
+      this.setState({ readyForCards: true });
+      this.setState({ currentPosition: 1, maximumPosition: 1 });
+      this.props.setCurrentDeckName(this.state.deckName);
     });
-    this.setState({ readyForCards: true });
-    this.setState({ currentPosition: 1, maximumPosition: 1 });
   };
 
   sendCreateCardRequest = () => {
@@ -104,6 +123,10 @@ class DeckCreator extends React.Component {
     });
   };
 
+  sendToEdit = () => {
+    this.props.history.push("deckeditor");
+  };
+
   render() {
     if (this.state.readyForCards === false) {
       return (
@@ -163,14 +186,42 @@ class DeckCreator extends React.Component {
               createMode={true}
             />
           </div>
+
+          <div
+            className="doubleArrowWrapper"
+            id="doubleWrapper"
+            onClick={this.sendToEdit}
+            style={{
+              display:
+                this.state.answer === "" &&
+                this.state.question === "" &&
+                this.state.currentPosition > 1
+                  ? "inline"
+                  : "none"
+            }}
+          >
+            <UncontrolledTooltip placement="right" target="doubleWrapper">
+              If there's no more cards to add click here to finish up.
+              Otherwise, keep typing below!
+            </UncontrolledTooltip>
+            <div
+              className="doubleArrow-right"
+              style={{ display: "inline-block" }}
+            />
+            <div
+              className="doubleArrow-right"
+              style={{ display: "inline-block" }}
+            />
+          </div>
+
           <div
             className="arrow-right"
             onClick={this.sendCreateCardRequest}
             style={{
-              visibility:
-                this.state.answer != "" && this.state.question != ""
-                  ? "visible"
-                  : "hidden"
+              display:
+                this.state.answer !== "" && this.state.question !== ""
+                  ? "inline"
+                  : "none"
             }}
           />
         </Row>
@@ -205,7 +256,9 @@ class DeckCreator extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     setCurrentDeck: currentDeck =>
-      dispatch({ type: "SET_CURRENTDECK", currentDeck })
+      dispatch({ type: "SET_CURRENTDECK", currentDeck }),
+    setCurrentDeckName: currentDeckName =>
+      dispatch({ type: "SET_CURRENTDECKNAME", currentDeckName })
   };
 }
 
@@ -213,7 +266,9 @@ function mapStateToProps(state) {
   return {
     decks: state.decks,
     userId: state.userId,
-    currentDeck: state.currentDeck
+    currentDeck: state.currentDeck,
+    currentPosition: state.currentPosition,
+    currentDeckName: state.currentDeckName
   };
 }
 

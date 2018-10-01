@@ -13,5 +13,6 @@ namespace FlashStudy.Models.Domain
         public string Question { get; set; }
         public string Answer { get; set; }
         public int Position { get; set; }
+        public string DeckName { get; set; }
     }
 }

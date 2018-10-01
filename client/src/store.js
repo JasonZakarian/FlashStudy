@@ -5,7 +5,23 @@ function reducer(state, action) {
     return {
       userId: null,
       decks: [],
-      currentDeck: null
+      currentDeck: null,
+      currentPosition: null,
+      currentDeckName: null
+    };
+  }
+
+  if (action.type === "SET_CURRENTDECKNAME") {
+    return {
+      ...state,
+      currentDeckName: action.currentDeckName
+    };
+  }
+
+  if (action.type === "SET_CURRENTPOSITION") {
+    return {
+      ...state,
+      currentPosition: action.currentPosition
     };
   }
 

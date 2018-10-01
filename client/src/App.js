@@ -5,6 +5,8 @@ import { Switch, Route } from "react-router-dom";
 import DeckCreator from "./DeckCreator";
 import { GetAllDecks } from "./services/deck.service";
 import { connect } from "react-redux";
+import DeckFinalCheck from "./DeckFinalCheck";
+import LandingPage from "./LandingPage";
 
 class App extends Component {
   state = {
@@ -24,18 +26,14 @@ class App extends Component {
     return (
       <div>
         <Switch>
+          <Route exact path="/" component={LandingPage} />
           <Route exact path="/login" component={Login} />
           <Route
             exact
             path="/deckcreator"
-            render={props => (
-              <DeckCreator
-                {...props}
-                //decks={this.props.decks}
-                //userId={this.props.userId}
-              />
-            )}
+            render={props => <DeckCreator {...props} />}
           />
+          <Route exact path="/deckeditor" component={DeckFinalCheck} />
         </Switch>
       </div>
     );
