@@ -13,7 +13,7 @@ import "./stylesheets/FlashCard.css";
 import "./stylesheets/App.css";
 import FlashCard from "./components/FlashCard";
 import swal from "sweetalert2";
-import { Redirect } from "react-router-dom";
+import { DeckDestroy, GetAllDecks } from "./services/deck.service";
 
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
@@ -172,6 +172,39 @@ class DeckFinalCheck extends React.Component {
     this.props.history.push("deckcreator");
   };
 
+  trashDeck = () => {
+    swal({
+      type: "question",
+      title: "Delete Deck?",
+      text: "Are you sure about this? There's no going back",
+      confirmButtonColor: "red",
+      showCancelButton: true
+    }).then(result => {
+      if (result.value) {
+        swal({
+          type: "warning",
+          title: "Last Chance",
+          text:
+            "Seriously, we're about to delete all the cards and the deck too! Hit confirm to trash this deck.",
+          confirmButtonColor: "red",
+          showCancelButton: true
+        }).then(result => {
+          if (result.value) {
+            DeckDestroy(this.props.currentDeck).then(() => {
+              this.props.history.push("/");
+              this.props.setCurrentDeck(null);
+              this.props.setCurrentPosition(null);
+              this.props.setCurrentDeckName(null);
+              GetAllDecks().then(response => {
+                this.props.setDecks(response.data.item);
+              });
+            });
+          }
+        });
+      }
+    });
+  };
+
   render() {
     if (this.props.currentDeck === null && this.state.fullDeck === "") {
       return (
@@ -292,6 +325,14 @@ class DeckFinalCheck extends React.Component {
                   )}
                 </Droppable>
               </DragDropContext>
+              <button
+                type="button"
+                className="btn btn-danger btn-sm"
+                style={{ marginLeft: "37em", marginTop: "1em" }}
+                onClick={this.trashDeck}
+              >
+                Trash Deck
+              </button>
             </Col>
             <Col
               md="auto"
@@ -363,14 +404,16 @@ function mapDispatchToProps(dispatch) {
     setCurrentPosition: currentPosition =>
       dispatch({ type: "SET_CURRENTPOSITION", currentPosition }),
     setCurrentDeckName: currentDeckName =>
-      dispatch({ type: "SET_CURRENTDECKNAME", currentDeckName })
+      dispatch({ type: "SET_CURRENTDECKNAME", currentDeckName }),
+    setDecks: decks => dispatch({ type: "SET_DECKS", decks })
   };
 }
 
 function mapStateToProps(state) {
   return {
     currentDeck: state.currentDeck,
-    allDecks: state.decks
+    allDecks: state.decks,
+    currentDeckName: state.currentDeckName
   };
 }
 

@@ -9,3 +9,7 @@ export function GetAllDecks() {
 export function CreateDeck(payload) {
   return axios.post(`${baseUrl}`, payload);
 }
+
+export function DeckDestroy(deckId) {
+  return axios.delete(`${baseUrl}/${deckId}`);
+}

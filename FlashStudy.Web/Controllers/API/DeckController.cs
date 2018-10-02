@@ -37,5 +37,13 @@ namespace FlashStudy.Web.Controllers.API
 
             return Request.CreateResponse(HttpStatusCode.OK, new ItemResponse<List<Deck>> { Item = deckList });
         }
+
+        [Route("{deckId:int}"),HttpDelete]
+        public HttpResponseMessage DeleteDeck(int deckId)
+        {
+            deckService.DeleteDeck(deckId);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

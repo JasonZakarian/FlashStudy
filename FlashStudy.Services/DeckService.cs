@@ -33,6 +33,22 @@ namespace FlashStudy.Services
             }
         }
 
+        public void DeleteDeck(int deckId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Deck_Destroy";
+
+                cmd.Parameters.AddWithValue("@DeckId", deckId);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public List<Deck> GetAll(int UserId)
         {
             List<Deck> deckList = new List<Deck>();
