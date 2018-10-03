@@ -11,7 +11,8 @@ class StudyDesk extends React.Component {
     deckSelect: "",
     currentQuestion: 0,
     currentDeckName: "",
-    maxlength: ""
+    maxLength: "",
+    flip: ""
   };
 
   onChange = e => {
@@ -28,6 +29,35 @@ class StudyDesk extends React.Component {
       this.props.setCurrentDeck(Number(this.state.deckSelect));
       this.props.setCurrentDeckName(response.data.item[0].deckName);
     });
+  };
+
+  flip = () => {
+    if (this.state.flip === "") {
+      this.setState({ flip: "flip" }, () => {
+        setTimeout(() => {
+          if (this.state.currentQuestion + 1 === this.state.maxLength) {
+            this.props.history.push("/");
+          } else {
+            this.setState(
+              {
+                flip: ""
+              },
+              () => {
+                setTimeout(() => {
+                  this.setState({
+                    currentQuestion: this.state.currentQuestion + 1
+                  });
+                }, 250);
+              }
+            );
+          }
+        }, 3000);
+      });
+    }
+  };
+
+  flipCard = () => {
+    this.flip();
   };
 
   render() {
@@ -82,6 +112,8 @@ class StudyDesk extends React.Component {
               }
               answer={this.state.fullDeck[this.state.currentQuestion].answer}
               frontButtonLabel="Submit Answer"
+              onFlip={this.flip}
+              flip={this.state.flip}
             />
           </Col>
         </div>

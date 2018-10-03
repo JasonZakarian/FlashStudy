@@ -16,25 +16,22 @@ class FlashCard extends React.Component {
   };
 
   flip = () => {
-    if (this.state.flip === "") {
-      this.setState({ flip: "flip" });
-    } else {
-      this.setState({ flip: "" });
-    }
+    this.props.onFlip();
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // do things with nextProps.someProp and prevState.cachedSomeProp
     return {
       question: nextProps.question,
-      answer: nextProps.answer
+      answer: nextProps.answer,
+      flip: nextProps.flip
     };
   }
 
   render() {
     return (
       <Col md="6">
-        <div className={`${this.state.flipClass} ${this.state.flip}`}>
+        <div className={`${this.state.flipClass} ${this.props.flip}`}>
           <div className="flipper flashCard">
             <div className="front">
               <p>Question:</p>
@@ -59,7 +56,9 @@ class FlashCard extends React.Component {
             {/*Front End*/}
             <div className="back">
               <h2>
-                {this.state.input === this.state.answer
+                {this.state.input
+                  .toLowerCase()
+                  .includes(this.state.answer.toLowerCase())
                   ? "That's right!"
                   : "Incorrect"}
               </h2>
@@ -72,7 +71,7 @@ class FlashCard extends React.Component {
               <button
                 type="button"
                 className="submitButton btn"
-                onClick={this.flip}
+                //onClick={this.props.onFlip}
               >
                 Back to Question
               </button>

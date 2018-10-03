@@ -48,7 +48,8 @@ class DeckFinalCheck extends React.Component {
     answer: "",
     question: "",
     position: "",
-    id: ""
+    id: "",
+    flip: ""
   };
 
   componentDidMount() {
@@ -205,6 +206,14 @@ class DeckFinalCheck extends React.Component {
     });
   };
 
+  flip = () => {
+    if (this.state.flip === "") {
+      this.setState({ flip: "flip" });
+    } else {
+      this.setState({ flip: "" });
+    }
+  };
+
   render() {
     if (this.props.currentDeck === null && this.state.fullDeck === "") {
       return (
@@ -347,6 +356,8 @@ class DeckFinalCheck extends React.Component {
                   frontButtonLabel="Check Answer"
                   question={this.state.question}
                   answer={this.state.answer}
+                  onFlip={this.flip}
+                  flip={this.state.flip}
                 />
                 <br />
                 <div>

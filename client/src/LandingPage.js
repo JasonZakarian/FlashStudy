@@ -2,6 +2,7 @@ import React from "react";
 import { Col } from "reactstrap";
 import "./stylesheets/App.css";
 import Login from "./Login";
+import flash from "./assets/Flash Gordon - Queen.mp3";
 
 class LandingPage extends React.Component {
   toCreate = () => {
@@ -36,6 +37,7 @@ class LandingPage extends React.Component {
             FLASH
           </p>
           <p style={{ fontSize: "290px", fontFamily: "helvetica" }}>STUDY</p>
+          <audio ref="audio_tag" src={flash} autoPlay />
         </div>
 
         <div>

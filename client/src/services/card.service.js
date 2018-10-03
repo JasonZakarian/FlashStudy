@@ -25,3 +25,12 @@ export function DeleteCard(deck, position) {
 export function SaveDeckPositions(fullDeck) {
   return axios.put(`${baseUrl}/fullUpdate`, fullDeck);
 }
+
+//BASE FLIP FUNCTION
+/* flip = () => {
+  if (this.state.flip === "") {
+    this.setState({ flip: "flip" });
+  } else {
+    this.setState({ flip: "" });
+  }
+}; */

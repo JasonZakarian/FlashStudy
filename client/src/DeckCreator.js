@@ -26,7 +26,8 @@ class DeckCreator extends React.Component {
     readyForCards: false,
     currentPosition: 0,
     maximumPosition: 0,
-    currentCardId: ""
+    currentCardId: "",
+    flip: ""
   };
 
   componentDidMount() {
@@ -127,6 +128,14 @@ class DeckCreator extends React.Component {
     this.props.history.push("deckeditor");
   };
 
+  flip = () => {
+    if (this.state.flip === "") {
+      this.setState({ flip: "flip" });
+    } else {
+      this.setState({ flip: "" });
+    }
+  };
+
   render() {
     if (this.state.readyForCards === false) {
       return (
@@ -184,6 +193,8 @@ class DeckCreator extends React.Component {
               frontButtonLabel="Check Answer"
               question={this.state.question}
               createMode={true}
+              onFlip={this.flip}
+              flip={this.state.flip}
             />
           </div>
 
