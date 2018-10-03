@@ -7,6 +7,7 @@ import { GetAllDecks } from "./services/deck.service";
 import { connect } from "react-redux";
 import DeckFinalCheck from "./DeckFinalCheck";
 import LandingPage from "./LandingPage";
+import StudyDesk from "./StudyDesk";
 
 class App extends Component {
   state = {
@@ -28,6 +29,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/studydesk" component={StudyDesk} />
           <Route
             exact
             path="/deckcreator"

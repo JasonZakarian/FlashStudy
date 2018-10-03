@@ -12,6 +12,10 @@ class LandingPage extends React.Component {
     this.props.history.push("deckeditor");
   };
 
+  toStudy = () => {
+    this.props.history.push("studydesk");
+  };
+
   render() {
     return (
       <div style={{ display: "flex" }}>
@@ -52,12 +56,14 @@ class LandingPage extends React.Component {
                 <span style={{ fontSize: "50px" }}>EDIT</span>
               </div>
             </a>
-            <div className="landingButton">
-              <br />
-              <br />
-              <br />
-              <span style={{ fontSize: "50px" }}>STUDY</span>
-            </div>
+            <a href="JavaScript:Void(0);" style={{ textDecoration: "none" }}>
+              <div className="landingButton" onClick={this.toStudy}>
+                <br />
+                <br />
+                <br />
+                <span style={{ fontSize: "50px" }}>STUDY</span>
+              </div>
+            </a>
           </Col>
         </div>
       </div>
