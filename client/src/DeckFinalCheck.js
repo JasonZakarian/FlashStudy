@@ -251,7 +251,7 @@ class DeckFinalCheck extends React.Component {
           </Container>
         </div>
       );
-    } else if (this.state.fullDeck != "") {
+    } else if (this.state.fullDeck !== "") {
       //We need to account for decks with 0 cards.  Breaks at the moment.
       return (
         <div>

@@ -21,13 +21,18 @@ class StudyDesk extends React.Component {
 
   selectDeck = () => {
     GetFullDeck(this.state.deckSelect).then(response => {
-      this.setState({
-        fullDeck: response.data.item,
-        maxLength: response.data.item.length,
-        currentDeckName: response.data.item[0].deckName
-      });
-      this.props.setCurrentDeck(Number(this.state.deckSelect));
-      this.props.setCurrentDeckName(response.data.item[0].deckName);
+      this.setState(
+        {
+          fullDeck: response.data.item,
+          maxLength: response.data.item.length,
+          currentDeckName: response.data.item[0].deckName
+        },
+        () => {
+          console.log(this.state.deckSelect);
+          this.props.setCurrentDeck(Number(this.state.deckSelect));
+          this.props.setCurrentDeckName(response.data.item[0].deckName);
+        }
+      );
     });
   };
 
@@ -121,17 +126,19 @@ class StudyDesk extends React.Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    setCurrentDeck: currentDeck =>
+      dispatch({ type: "SET_CURRENTDECK", currentDeck }),
+    setCurrentDeckName: currentDeckName =>
+      dispatch({ type: "SET_CURRENTDECKNAME", currentDeckName })
+  };
+}
+
 function mapStateToProps(state) {
   return {
     allDecks: state.decks,
     currentDeckName: state.currentDeckName
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    setCurrentDeck: deck => dispatch({ type: "SET_CURRENTDECK", deck }),
-    setCurrentDeckName: name => dispatch({ type: "SET_CURRENTDECKNAME", name })
   };
 }
 

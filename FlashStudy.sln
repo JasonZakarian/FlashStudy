@@ -15,26 +15,37 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scrapper", "Scrapper\Scrapp
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Azure|Any CPU = Azure|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB4FED6D-56D6-4C7B-A62E-7F142A343FC9}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{DB4FED6D-56D6-4C7B-A62E-7F142A343FC9}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{DB4FED6D-56D6-4C7B-A62E-7F142A343FC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB4FED6D-56D6-4C7B-A62E-7F142A343FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB4FED6D-56D6-4C7B-A62E-7F142A343FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB4FED6D-56D6-4C7B-A62E-7F142A343FC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFA3B049-7A29-466A-B619-6193481976CD}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{FFA3B049-7A29-466A-B619-6193481976CD}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{FFA3B049-7A29-466A-B619-6193481976CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FFA3B049-7A29-466A-B619-6193481976CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFA3B049-7A29-466A-B619-6193481976CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFA3B049-7A29-466A-B619-6193481976CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03F38C18-1AA6-4F6A-8E26-9DD20E545991}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{03F38C18-1AA6-4F6A-8E26-9DD20E545991}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{03F38C18-1AA6-4F6A-8E26-9DD20E545991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03F38C18-1AA6-4F6A-8E26-9DD20E545991}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03F38C18-1AA6-4F6A-8E26-9DD20E545991}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03F38C18-1AA6-4F6A-8E26-9DD20E545991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1AA1640-EF17-4B3F-8404-86498888E486}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{C1AA1640-EF17-4B3F-8404-86498888E486}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{C1AA1640-EF17-4B3F-8404-86498888E486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1AA1640-EF17-4B3F-8404-86498888E486}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1AA1640-EF17-4B3F-8404-86498888E486}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1AA1640-EF17-4B3F-8404-86498888E486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69ABB6A4-4192-4535-A778-BECEA437DA9E}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{69ABB6A4-4192-4535-A778-BECEA437DA9E}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{69ABB6A4-4192-4535-A778-BECEA437DA9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69ABB6A4-4192-4535-A778-BECEA437DA9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69ABB6A4-4192-4535-A778-BECEA437DA9E}.Release|Any CPU.ActiveCfg = Release|Any CPU

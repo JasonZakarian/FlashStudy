@@ -71,7 +71,7 @@ class FlashCard extends React.Component {
               <button
                 type="button"
                 className="submitButton btn"
-                //onClick={this.props.onFlip}
+                onClick={this.props.onFlip}
               >
                 Back to Question
               </button>

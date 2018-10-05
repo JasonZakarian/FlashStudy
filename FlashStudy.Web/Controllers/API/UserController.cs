@@ -55,15 +55,25 @@ namespace FlashStudy.Web.Controllers.API
             return Request.CreateResponse(HttpStatusCode.Created, new ItemResponse<int> { Item = newId });
         }
 
-        /*[Route("login"),HttpPost]
-        public HttpResponseMessage Login(UserLoginRequest request)
-        {
-            if (request == null)
-            {
-                ModelState.AddModelError("", "No Request Data Found");
-            }
+        //[Route("login"),HttpPost]
+        //public HttpResponseMessage Login(UserLoginRequest request)
+        //{
+        //    if (request == null)
+        //    {
+        //        ModelState.AddModelError("", "No Request Data Found");
+        //    }
 
-        }*/
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+        //    }
+
+        //    var httpRequest = new HttpRequestMessage();
+        //    httpRequest.Headers.
+
+        //    return Request.CreateResponse(HttpStatusCode.OK);
+
+        //}
 
         [Route("{id:int}"), HttpPut]
         public HttpResponseMessage Edit(UserEditRequest request)
