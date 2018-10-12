@@ -4,4 +4,5 @@ This project is the result of a two week sprint to showcase the skills I've gain
 
 Built on a fountdation of T-SQL, personally written stored procedures, hand coded ADO.net commands, and a custom Web API created in the .NET framework written in C#.  The front end is written in REACTjs and Javascript, with only one major NPM package doing any front end work. (react-beautiful-dnd for the drag and drop list).  Everythig else is custom made, focusing primarily on the re-useability of components.  
 
-Feel free to make a deck or play around with what's currently there.  
+The live site is currently hosted on http://flashstudy.azurewebsites.net/
+Feel free to make a deck or play around with what's currently there.
