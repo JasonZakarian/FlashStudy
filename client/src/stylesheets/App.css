@@ -17,8 +17,26 @@
   margin:4em;
   border-radius:25px;
   text-align: center;
-  
+  transition:transform 1;
 }
+
+.landingButton:hover{
+  transform:scale(1.1);
+}
+
+.landingLink{
+  text-decoration:none;
+}
+
+.leftLanding{
+  transition:500ms;
+}
+
+.leftLanding:hover{
+  transform:scale(1.1)
+}
+
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -34,7 +52,7 @@
 
 .Creator-header{
   background-color:#283D3B;
-  height: 110px;
+  height: 80px;
   padding: 20px;
 }
 
@@ -104,6 +122,8 @@
 .editorButton{
  margin:1em;
 }
+
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

@@ -4,11 +4,14 @@ using FlashStudy.Models.Request;
 using FlashStudy.Models.Response;
 using FlashStudy.Services;
 using FlashStudy.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
+using System.Web.Security;
 
 namespace FlashStudy.Web.Controllers.API
 {
@@ -55,7 +58,24 @@ namespace FlashStudy.Web.Controllers.API
             return Request.CreateResponse(HttpStatusCode.Created, new ItemResponse<int> { Item = newId });
         }
 
-        //[Route("login"),HttpPost]
+        [Route("login"),HttpPost]
+        public HttpResponseMessage Login()
+        {
+            var resp = new HttpResponseMessage();
+            var cookie = new CookieHeaderValue("userId", "1");
+            cookie.Expires = DateTimeOffset.Now.AddDays(1);
+            cookie.Domain = Request.RequestUri.Host;
+            cookie.Path = "/";
+
+            resp.Headers.AddCookies(new CookieHeaderValue[] { cookie });
+            resp.StatusCode = HttpStatusCode.OK;
+
+            FormsAuthentication.
+
+            return resp;
+        }
+
+        //[Route("login"), HttpPost]
         //public HttpResponseMessage Login(UserLoginRequest request)
         //{
         //    if (request == null)
@@ -68,8 +88,9 @@ namespace FlashStudy.Web.Controllers.API
         //        return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
         //    }
 
-        //    var httpRequest = new HttpRequestMessage();
-        //    httpRequest.Headers.
+        //    var resp = new HttpResponseMessage();
+        //    var cookie = new CookieHeaderValue("user")
+         
 
         //    return Request.CreateResponse(HttpStatusCode.OK);
 

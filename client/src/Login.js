@@ -1,5 +1,5 @@
 import React from "react";
-import { user_Create } from "./services/user.service";
+import { user_Create, user_Login } from "./services/user.service";
 
 class Login extends React.Component {
   state = {
@@ -28,10 +28,17 @@ class Login extends React.Component {
     return payload;
   };
 
+  testCookie = () => {
+    user_Login();
+  };
+
   render() {
     return (
       <div className="container" style={{ textAlign: "center" }}>
         <div className="form-group" style={{ marginTop: "10em" }}>
+          <button type="button" onClick={this.testCookie}>
+            Test
+          </button>
           <label>First Name:</label>
           <br />
           <input
